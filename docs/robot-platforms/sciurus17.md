@@ -20,15 +20,15 @@ The RT Sciurus17 platform consists of the following components:
 
 ## ⚙️ Platform Configuration
 
-Switch to the RT Sciurus17 platform:
+Clone this platform into `extensions/` of the core of OpenRoSDE, then switch to the RT Sciurus17 platform:
 
 ```shell
+git clone https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17.git extensions/openrosde-platform-sciurus17
 bash ./SWITCH-ROBOT-PLATFORM.bash sciurus17
 ```
 
 > [!NOTE]
-> The default `.env` configuration is pre-configured for the Robotis TurtleBot3 platform.
-> Run `SWITCH-ROBOT-PLATFORM.bash sciurus17` to create the `.env.custom` file with the RT Sciurus17 configuration.
+> The switch creates the `.env.custom` file of the core with the RT Sciurus17 configuration of `env/sciurus17.env`, then clones the Git submodules of every extension and applies their patches.
 
 ## 🌐 Network Configuration
 
@@ -46,11 +46,13 @@ OPENROSDE_ROS_MASTER_HOSTNAME=sciurus-host.local
 
 ## 🚀 Gazebo Simulation
 
-Start the RT Sciurus17 Gazebo simulation using the predefined Terminator layout:
+Start the RT Sciurus17 Gazebo simulation using the `tmux` session of the platform:
 
 ```shell
-bash ./RUN-TERMINATOR-TERMINAL.bash #[docker-project] default-gazebo
+bash ./RUN-TMUX-SESSION.bash #[docker-project] default-gazebo
 ```
+
+The Terminator layout of earlier releases still opens with `bash ./RUN-TERMINATOR-TERMINAL.bash #[docker-project] default-gazebo`.
 
 Or start the launch files manually in the Docker container:
 
@@ -79,11 +81,13 @@ bash ./RESTART-CHRONY-SERVICE.bash
 > Before operating the real robot, run `RESTART-CHRONY-SERVICE.bash` to synchronize the host and robot clocks.
 > Set up the USB serial device by running `rosrun sciurus17_tools create_udev_rules` once and rebooting.
 
-Start the RT Sciurus17 real robot stack using the predefined Terminator layout:
+Start the RT Sciurus17 real robot stack using the `tmux` session of the platform:
 
 ```shell
-bash ./RUN-TERMINATOR-TERMINAL.bash #[docker-project] default-realworld
+bash ./RUN-TMUX-SESSION.bash #[docker-project] default-realworld
 ```
+
+The Terminator layout of earlier releases still opens with `bash ./RUN-TERMINATOR-TERMINAL.bash #[docker-project] default-realworld`.
 
 Or start the launch files manually in the Docker container:
 
@@ -117,3 +121,19 @@ Load the `Sciurus17 Example Behavior` behavior in the FlexBE App and press **Sta
 
 > [!CAUTION]
 > The FlexBE example behavior is **experimental** and currently has known issues in the Gazebo simulation.
+
+## 📜 Third-Party Software and Licensing
+
+This platform is distributed under the [Apache License 2.0](../../LICENSE).
+Its Catkin workspace builds two Git submodules of RT Corporation, each under its own license:
+
+| Component | Source | License |
+| --- | --- | --- |
+| `sciurus17_ros` | Git submodule from [https://github.com/rt-net/sciurus17_ros](https://github.com/rt-net/sciurus17_ros), branch `master` | [Apache-2.0](https://spdx.org/licenses/Apache-2.0.html) (RT Corporation) |
+| `sciurus17_description` | Git submodule from [https://github.com/rt-net/sciurus17_description](https://github.com/rt-net/sciurus17_description), branch `main` | Non-commercial license of RT Corporation (非商用使用許諾規約) |
+| `openrosde_sciurus17_launch`, `openrosde_sciurus17_behaviors` (this repository) | [https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17](https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17) | [Apache-2.0](../../LICENSE) (Coarobo GK) |
+
+> [!WARNING]
+> `sciurus17_description` holds the description and the meshes of the robot under the non-commercial license of RT Corporation, which allows research and education only.
+> Any commercial use needs a prior agreement with RT Corporation, as its license says: [https://github.com/rt-net/sciurus17_description/blob/main/LICENSE](https://github.com/rt-net/sciurus17_description/blob/main/LICENSE).
+> This repository only pins it as a Git submodule and never redistributes it.
