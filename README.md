@@ -1,9 +1,9 @@
 # OpenRoSDE Platform Sciurus17
 
-The RT Sciurus17 platform of [OpenRoSDE](https://gitlab.com/coarobo/SDE), read "Open Robotic SDE", the open-source Software Development Environment for collaborative robotics research maintained by [Coarobo GK](https://coarobo.com/).
+The RT Sciurus17 platform of [OpenRoSDE](https://github.com/openrosde/openrosde), read "Open Robotic SDE", the open-source Software Development Environment for collaborative robotics research maintained by [Coarobo GK](https://coarobo.com/).
 It is an extension that OpenRoSDE finds by name once it is cloned into `extensions/openrosde-platform-sciurus17/` of the core.
 
-[![Pipeline](https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17/badges/main/pipeline.svg)](https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17/-/pipelines)
+[![Test with OpenRoSDE](https://github.com/openrosde/openrosde-platform-sciurus17/actions/workflows/test-with-openrosde.yml/badge.svg?branch=main)](https://github.com/openrosde/openrosde-platform-sciurus17/actions/workflows/test-with-openrosde.yml)
 [![ROS Noetic](https://img.shields.io/badge/ROS_Noetic-Framework-blue?logo=ros&logoColor=white)](http://wiki.ros.org/noetic)
 [![Gazebo](https://img.shields.io/badge/Gazebo-Simulator-blue)](http://gazebosim.org/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green)](LICENSE)
@@ -31,21 +31,21 @@ It is an extension that OpenRoSDE finds by name once it is cloned into `extensio
 | `scripts/sciurus17/`                   | Bringup of the robot over SSH and restart of Chrony on the robot.                                                                                        |
 | `docs/robot-platforms/sciurus17.md`    | Documentation of the platform.                                                                                                                           |
 
-The layout is the one of the core, which the [Extensions](https://gitlab.com/coarobo/SDE/-/blob/dev/docs/extensions.md) guide of OpenRoSDE describes.
+The layout is the one of the core, which the [Extensions](https://github.com/openrosde/openrosde/blob/dev/docs/extensions.md) guide of OpenRoSDE describes.
 
 ## 🚀 Quick Start
 
-1. Clone and set up the core of OpenRoSDE on the Ubuntu development machine, as its [Quick Start](https://gitlab.com/coarobo/SDE#-quick-start) describes:
+1. Clone and set up the core of OpenRoSDE on the Ubuntu development machine, as its [Quick Start](https://github.com/openrosde/openrosde#-quick-start) describes:
 
     ```shell
-    git clone https://gitlab.com/coarobo/SDE.git && cd SDE/
+    git clone https://github.com/openrosde/openrosde.git && cd openrosde/
     bash ./SETUP-DEVEL-MACHINE.bash
     ```
 
 2. Clone this platform into `extensions/` of the core:
 
     ```shell
-    git clone https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17.git extensions/openrosde-platform-sciurus17
+    git clone https://github.com/openrosde/openrosde-platform-sciurus17.git extensions/openrosde-platform-sciurus17
     ```
 
 3. Switch to the platform, which also clones the Git submodules of every extension and applies their patches:
@@ -76,19 +76,19 @@ Update the platform with `git -C extensions/openrosde-platform-sciurus17 pull`, 
 | Document                                                                     | Description                                                      |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | [Robot Platforms / Sciurus17](docs/robot-platforms/sciurus17.md)             | RT Sciurus17 configuration, simulation, and operation            |
-| [Basic Usage](https://gitlab.com/coarobo/SDE/-/blob/dev/docs/basic-usage.md) | Full setup guide of the core of OpenRoSDE                        |
-| [Extensions](https://gitlab.com/coarobo/SDE/-/blob/dev/docs/extensions.md)   | How OpenRoSDE finds the files of a cloned extension and tests it |
+| [Basic Usage](https://github.com/openrosde/openrosde/blob/dev/docs/basic-usage.md) | Full setup guide of the core of OpenRoSDE                        |
+| [Extensions](https://github.com/openrosde/openrosde/blob/dev/docs/extensions.md)   | How OpenRoSDE finds the files of a cloned extension and tests it |
 
 ## 🧪 Continuous Integration
 
-The CI of the core of OpenRoSDE tests this platform at the commit that `gitlab-ci/extensions.repos` of the core pins: it builds or reuses the image `registry.gitlab.com/coarobo/sde/sciurus17-devel`, builds the Catkin workspaces in it, and checks every launch entry point of the panes.
+The CI of the core of OpenRoSDE tests this platform at the commit that `gitlab-ci/extensions.repos` of the core pins: it builds or reuses the image `ghcr.io/openrosde/sciurus17-devel`, builds the Catkin workspaces in it, and checks every launch entry point of the panes.
 It publishes the image as `dev` or `main` from those branches of the core, and under the tag of a release of the core, such as `v3.0.0`.
 
-`.gitlab-ci.yml` of this repository triggers a pipeline of the core on `dev` for every change, with `OPENROSDE_CI_EXTENSION_OVERRIDE` set to this project, its branch, and its commit, so that the core tests only the setups that run this platform, at that commit, and publishes nothing.
+`.github/workflows/test-with-openrosde.yml` of this repository calls the reusable workflow `extension.yml` of the core on `dev` for every push to `main` and every pull request, which checks out this commit in place of the version that the core pins, tests only the setups that run this platform, and publishes nothing.
 
 ## 🐛 Reporting Issues
 
-Please report any issue of this platform using the GitLab issue tracker: [https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17/-/issues](https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17/-/issues).
+Please report any issue of this platform using the GitHub issue tracker: [https://github.com/openrosde/openrosde-platform-sciurus17/issues](https://github.com/openrosde/openrosde-platform-sciurus17/issues).
 
 ## 📜 Third-Party Software
 
@@ -100,7 +100,7 @@ The image `sciurus17-devel` and the Catkin workspace bring the third-party softw
 | `sciurus17_ros`                                                                  | Git submodule from https://github.com/rt-net/sciurus17_ros, branch `master`, commit `2a3cdeb`        | [Apache-2.0](https://spdx.org/licenses/Apache-2.0.html) (RT Corporation)                                                         |
 | `sciurus17_description`                                                          | Git submodule from https://github.com/rt-net/sciurus17_description, branch `main`, commit `21a7720`  | Non-commercial license of RT Corporation (非商用使用許諾規約), https://github.com/rt-net/sciurus17_description/blob/main/LICENSE |
 | Intel RealSense packages `realsense2_camera` and `realsense2_description`        | Debian packages of the image `sciurus17-devel`, from https://github.com/IntelRealSense/realsense-ros | [Apache-2.0](https://spdx.org/licenses/Apache-2.0.html) (Intel Corporation)                                                      |
-| ROS Noetic, Gazebo, FlexBE, and the other packages of the image `openrosde-base` | The core of OpenRoSDE, https://gitlab.com/coarobo/SDE                                                | Per upstream, such as BSD, Apache-2.0, or MIT                                                                                    |
+| ROS Noetic, Gazebo, FlexBE, and the other packages of the image `openrosde-base` | The core of OpenRoSDE, https://github.com/openrosde/openrosde                                                | Per upstream, such as BSD, Apache-2.0, or MIT                                                                                    |
 
 > [!WARNING]
 > `sciurus17_description`, which holds the description and the meshes of the robot, is licensed under the non-commercial license of RT Corporation, which allows research and education only.

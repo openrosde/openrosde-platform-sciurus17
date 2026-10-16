@@ -23,7 +23,7 @@ The RT Sciurus17 platform consists of the following components:
 Clone this platform into `extensions/` of the core of OpenRoSDE, then switch to the RT Sciurus17 platform:
 
 ```shell
-git clone https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17.git extensions/openrosde-platform-sciurus17
+git clone https://github.com/openrosde/openrosde-platform-sciurus17.git extensions/openrosde-platform-sciurus17
 bash ./SWITCH-ROBOT-PLATFORM.bash sciurus17
 ```
 
@@ -131,7 +131,7 @@ Its Catkin workspace builds two Git submodules of RT Corporation, each under its
 | --- | --- | --- |
 | `sciurus17_ros` | Git submodule from [https://github.com/rt-net/sciurus17_ros](https://github.com/rt-net/sciurus17_ros), branch `master` | [Apache-2.0](https://spdx.org/licenses/Apache-2.0.html) (RT Corporation) |
 | `sciurus17_description` | Git submodule from [https://github.com/rt-net/sciurus17_description](https://github.com/rt-net/sciurus17_description), branch `main` | Non-commercial license of RT Corporation (非商用使用許諾規約) |
-| `openrosde_sciurus17_launch`, `openrosde_sciurus17_behaviors` (this repository) | [https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17](https://gitlab.com/coarobo/openrosde/openrosde-platform-sciurus17) | [Apache-2.0](../../LICENSE) (Coarobo GK) |
+| `openrosde_sciurus17_launch`, `openrosde_sciurus17_behaviors` (this repository) | [https://github.com/openrosde/openrosde-platform-sciurus17](https://github.com/openrosde/openrosde-platform-sciurus17) | [Apache-2.0](../../LICENSE) (Coarobo GK) |
 
 > [!WARNING]
 > `sciurus17_description` holds the description and the meshes of the robot under the non-commercial license of RT Corporation, which allows research and education only.
